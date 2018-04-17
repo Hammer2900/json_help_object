@@ -1,4 +1,5 @@
 import json
+import webbrowser
 
 
 class JsonObjectHelpClass(object):
@@ -40,11 +41,15 @@ class JsonObjectHelpClass(object):
     def _proccess_string(self, data):
         return json.loads(data)
 
-    def print(self, indent=3):
+    def pprint(self, indent=3):
         print(json.dumps(self.json, indent=indent))
+
+    def browser(self):
+        webbrowser.open_new_tab('http://jsoneditoronline.org/?json={}'.format(self.json))
 
 
 if __name__ == '__main__':
     s = '{"id": 1, "name": "A green door", "price": [{"id": 1, "name": "A green door", "price": 12.50, "tags": ["home", "green"]}, {"id": 1, "name": "A green door", "price": 12.50, "tags": ["home", "green"]}], "tags": {"name": "A green door"}}'
-    a = JsonObjectHelpClass(s)
-    a.print(5)
+    # JsonObjectHelpClass(s).print(6)
+    # JsonObjectHelpClass(s).browser()
+
