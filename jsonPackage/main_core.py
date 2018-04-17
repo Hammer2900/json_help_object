@@ -8,7 +8,7 @@ class JsonObjectHelpClass(object):
         self._check_bin_attribute()
 
     def _check_data_type(self, data):
-        if isinstance(data, str):
+        if isinstance(data, str) or isinstance(data, unicode):
             return self._proccess_string(data)
         elif isinstance(data, dict):
             return self._proccess_json(data)
@@ -16,16 +16,19 @@ class JsonObjectHelpClass(object):
             raise Exception("Unknown data format.")
 
     def _check_bin_attribute(self):
-        for key, value in self.json.items():
-            if isinstance(value, dict):
-                setattr(self, key, JsonObjectHelpClass(value))
-            elif isinstance(value, list):
-                if self._list_check_type_simple(value):
-                    setattr(self, key, value)
+        if isinstance(self.json, list):
+            self.list_obj = [JsonObjectHelpClass(x) for x in self.json]
+        else:
+            for key, value in self.json.items():
+                if isinstance(value, dict):
+                    setattr(self, key, JsonObjectHelpClass(value))
+                elif isinstance(value, list):
+                    if self._list_check_type_simple(value):
+                        setattr(self, key, value)
+                    else:
+                        setattr(self, key, [JsonObjectHelpClass(x) for x in value])
                 else:
-                    setattr(self, key, [JsonObjectHelpClass(x) for x in value])
-            else:
-                setattr(self, key, value)
+                    setattr(self, key, value)
 
     def _list_check_type_simple(self, data):
         if not data:
