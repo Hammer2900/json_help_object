@@ -42,18 +42,18 @@ class JsonObjectHelpClass(object):
         else:
             return True
 
-    def _color(self, indent=3):
-        return highlight(
-            unicode(json.dumps(self.json, indent=indent), 'UTF-8'),
-            lexers.JsonLexer(),
-            formatters.TerminalFormatter()
-        )
-
     def _proccess_json(self, data):
         return data
 
     def _proccess_string(self, data):
         return json.loads(data)
+
+    def to_color(self, indent=3):
+        return highlight(
+            unicode(json.dumps(self.json, indent=indent), 'UTF-8'),
+            lexers.JsonLexer(),
+            formatters.TerminalFormatter()
+        )
 
     def to_print(self, indent=3):
         print(json.dumps(self.json, indent=indent))
@@ -81,9 +81,10 @@ class JsonObjectHelpClass(object):
 if __name__ == '__main__':
     s = '{"id": 1, "name": "A green door", "price": [{"id": 1, "name": "A green door", "price": 12.50, "tags": ["home", "green"]}, {"id": 1, "name": "A green door", "price": 12.50, "tags": ["home", "green"]}], "tags": {"name": "A green door"}}'
     # JsonObjectHelpClass(s).to_print(6)
-    print JsonObjectHelpClass(s)._color()
+    # print JsonObjectHelpClass(s)._color()
     # JsonObjectHelpClass(s).to_yaml()
     # JsonObjectHelpClass(s).to_pickle_save('testname')
     # JsonObjectHelpClass(s).browser()
+
 
 
