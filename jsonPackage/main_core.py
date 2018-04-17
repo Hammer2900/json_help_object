@@ -4,7 +4,7 @@ import json
 class JsonObjectHelpClass(object):
     def __init__(self, data, *args, **kwargs):
         self.json = self._check_data_type(data)
-        self.bin = self._check_bin_attribute(data)
+        self._check_bin_attribute()
 
     def _check_data_type(self, data):
         if isinstance(data, str):
@@ -14,8 +14,25 @@ class JsonObjectHelpClass(object):
         else:
             raise Exception("Unknown data format.")
 
-    def _check_bin_attribute(self, data):
-        return None
+    def _check_bin_attribute(self):
+        for key, value in self.json.items():
+            if isinstance(value, dict):
+                setattr(self, key, JsonObjectHelpClass(value))
+            elif isinstance(value, list):
+                if self._list_check_type_simple(value):
+                    setattr(self, key, value)
+                else:
+                    setattr(self, key, [JsonObjectHelpClass(x) for x in value])
+            else:
+                setattr(self, key, value)
+
+    def _list_check_type_simple(self, data):
+        if not data:
+            return True
+        elif isinstance(data[0], dict):
+            return False
+        else:
+            return True
 
     def _proccess_json(self, data):
         return data
@@ -28,7 +45,6 @@ class JsonObjectHelpClass(object):
 
 
 if __name__ == '__main__':
-    s = '{"id": 1, "name": "A green door", "price": 12.50, "tags": ["home", "green"]}'
+    s = '{"id": 1, "name": "A green door", "price": [{"id": 1, "name": "A green door", "price": 12.50, "tags": ["home", "green"]}, {"id": 1, "name": "A green door", "price": 12.50, "tags": ["home", "green"]}], "tags": {"name": "A green door"}}'
     a = JsonObjectHelpClass(s)
-    print('Debug -->', a.json)
     a.print(5)
