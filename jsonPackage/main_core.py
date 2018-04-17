@@ -2,10 +2,12 @@ import json
 import pickle
 import webbrowser
 import yaml
+from pygments import highlight, lexers, formatters
 
 
 class JsonObjectHelpClass(object):
     def __init__(self, data, *args, **kwargs):
+        self.raw = data
         self.json = self._check_data_type(data)
         self._check_bin_attribute()
 
@@ -40,6 +42,13 @@ class JsonObjectHelpClass(object):
         else:
             return True
 
+    def _color(self, indent=3):
+        return highlight(
+            unicode(json.dumps(self.json, indent=indent), 'UTF-8'),
+            lexers.JsonLexer(),
+            formatters.TerminalFormatter()
+        )
+
     def _proccess_json(self, data):
         return data
 
@@ -71,7 +80,8 @@ class JsonObjectHelpClass(object):
 
 if __name__ == '__main__':
     s = '{"id": 1, "name": "A green door", "price": [{"id": 1, "name": "A green door", "price": 12.50, "tags": ["home", "green"]}, {"id": 1, "name": "A green door", "price": 12.50, "tags": ["home", "green"]}], "tags": {"name": "A green door"}}'
-    # JsonObjectHelpClass(s).print(6)
+    # JsonObjectHelpClass(s).to_print(6)
+    print JsonObjectHelpClass(s)._color()
     # JsonObjectHelpClass(s).to_yaml()
     # JsonObjectHelpClass(s).to_pickle_save('testname')
     # JsonObjectHelpClass(s).browser()
