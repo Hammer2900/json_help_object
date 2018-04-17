@@ -60,6 +60,11 @@ class JsonObjectHelpClass(object):
         with open('/tmp/{}.pickle'.format(file_name), 'wb') as handle:
             pickle.dump(self.json, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
+    @staticmethod
+    def to_pickle_load(file_name):
+        with open('/tmp/{}.pickle'.format(file_name), 'wb') as handle:
+            return pickle.load(handle)
+
     def to_yaml(self):
         print yaml.safe_dump(self.json, default_flow_style=False)
 
