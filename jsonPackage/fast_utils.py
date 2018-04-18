@@ -13,8 +13,8 @@ def jspickle(dict_json, file_name):
     JsonObjectHelpClass(dict_json).to_pickle_save(file_name)
 
 
-def jlpickle(dict_json, file_name):
-    JsonObjectHelpClass(dict_json).to_pickle_load(file_name)
+def jlpickle(file_name):
+    return JsonObjectHelpClass('{}').to_pickle_load(file_name)
 
 
 def jyaml(dict_json):
