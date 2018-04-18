@@ -15,10 +15,10 @@ Example
 
 from jsonPackage.fast_utils import *
 
-example_json= '{"id": 1, "name": "A green door", "price": [{"id": 1, "name": "A green door", "price": 12.50, "tags": ["home", "green"]}, {"id": 1, "name": "A green door", "price": 12.50, "tags": ["home", "green"]}], "tags": {"name": "A green door"}}'
+example_json= '{"id": 1, "name": "A green door", "price": 12.50, "tags": ["home", "green"]}'
 
-* jcolor(example_json)
-* jprint(example_json)
-* jspickle(example_json)
-* jlpickle(example_json)
-* jyaml(example_json)
+jcolor(example_json)
+jprint(example_json)
+jspickle(example_json)
+jlpickle(example_json)
+jyaml(example_json)
