@@ -18,7 +18,11 @@ from jsonPackage.fast_utils import *
 example_json= '{"id": 1, "name": "A green door", "price": 12.50, "tags": ["home", "green"]}'
 
 jcolor(example_json)
+
 jprint(example_json)
+
 jspickle(example_json)
+
 jlpickle(example_json)
+
 jyaml(example_json)
