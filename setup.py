@@ -7,7 +7,7 @@ setup(
     packages=find_packages(exclude=['tests*']),
     license='MIT',
     description='Json helper class for debug.',
-    long_description=open('README.txt').read(),
+    long_description=open('README.rst').read(),
     install_requires=['pygments', 'pyyaml'],
     url='https://github.com/Hammer2900/json_help_object',
     author='Jek Hammer',
