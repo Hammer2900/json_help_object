@@ -80,7 +80,7 @@ class JsonObjectHelpClass(object):
 
 if __name__ == '__main__':
     s = '{"id": 1, "name": "A green door", "price": [{"id": 1, "name": "A green door", "price": 12.50, "tags": ["home", "green"]}, {"id": 1, "name": "A green door", "price": 12.50, "tags": ["home", "green"]}], "tags": {"name": "A green door"}}'
-    # JsonObjectHelpClass(s).to_print(6)
+    JsonObjectHelpClass(s).to_print(6)
     # print JsonObjectHelpClass(s)._color()
     # JsonObjectHelpClass(s).to_yaml()
     # JsonObjectHelpClass(s).to_pickle_save('testname')

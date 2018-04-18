@@ -2,14 +2,14 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='python-package-example',
-    version='0.1',
+    name='python-json-help-object',
+    version='1.0',
     packages=find_packages(exclude=['tests*']),
     license='MIT',
-    description='An example python package',
+    description='Json helper class for debug.',
     long_description=open('README.txt').read(),
-    install_requires=['numpy'],
-    url='https://github.com/BillMills/python-package-example',
-    author='Bill Mills',
-    author_email='myemail@example.com'
+    install_requires=['pygments', 'yaml'],
+    url='https://github.com/Hammer2900/json_help_object',
+    author='Jek Hammer',
+    author_email='evgeny2900@gmail.com'
 )
