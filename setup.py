@@ -2,7 +2,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='python-json-help-object',
+    name='python_json_help_object',
     version='1.0',
     packages=find_packages(exclude=['tests*']),
     license='MIT',
