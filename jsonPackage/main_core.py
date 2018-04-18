@@ -87,6 +87,7 @@ if __name__ == '__main__':
     # JsonObjectHelpClass(s).to_yaml()
     # JsonObjectHelpClass(s).to_pickle_save('testname')
     # JsonObjectHelpClass(s).browser()
-
+    from jsonPackage.fast_utils import *
+    jcolor()
 
 
