@@ -1,1 +1,1 @@
-import main_core
+import main_core, fast_utils
