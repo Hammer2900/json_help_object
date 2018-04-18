@@ -1,1 +1,1 @@
-import somePython
+import main_core
