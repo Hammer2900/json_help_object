@@ -66,8 +66,10 @@ class JsonObjectHelpClass(object):
             f.write(json.dumps(self.json, indent=indent))
 
     def to_pickle_save(self, file_name):
-        with open('/tmp/{}.pickle'.format(file_name), 'wb') as handle:
+        full_name = '/tmp/{}.pickle'.format(file_name)
+        with open(full_name, 'wb') as handle:
             pickle.dump(self.json, handle, protocol=pickle.HIGHEST_PROTOCOL)
+        return full_name
 
     @staticmethod
     def to_pickle_load(file_name):
