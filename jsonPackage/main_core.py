@@ -1,8 +1,10 @@
 import json
 import pickle
+import uuid
 import webbrowser
 import yaml
 from pygments import highlight, lexers, formatters
+from json2html import *
 
 
 class JsonObjectHelpClass(object):
@@ -59,7 +61,11 @@ class JsonObjectHelpClass(object):
         print(json.dumps(self.json, indent=indent))
 
     def to_browser(self):
-        webbrowser.open_new_tab('http://jsoneditoronline.org/?json={}'.format(self.json))
+        full_name = '/tmp/to_browser_{}.html'.format(uuid.uuid4())
+        with open(full_name, 'w') as f:
+            f.write(json2html.convert(json=self.json))
+        webbrowser.open('file://{}'.format(full_name))
+        return 'file://{}'.format(full_name)
 
     def to_file_save(self, file_name, indent=3):
         with open(file_name, 'w') as f:
@@ -83,11 +89,10 @@ class JsonObjectHelpClass(object):
 if __name__ == '__main__':
     s = '{"id": 1, "name": "A green door", "price": [{"id": 1, "name": "A green door", "price": 12.50, "tags": ["home", "green"]}, {"id": 1, "name": "A green door", "price": 12.50, "tags": ["home", "green"]}], "tags": {"name": "A green door"}}'
     # JsonObjectHelpClass(s).to_print(6)
-    print JsonObjectHelpClass(s).to_color()
+    # print JsonObjectHelpClass(s).to_color()
     # JsonObjectHelpClass(s).to_yaml()
     # JsonObjectHelpClass(s).to_pickle_save('testname')
-    # JsonObjectHelpClass(s).browser()
-    from jsonPackage.fast_utils import *
-    jcolor()
+    print JsonObjectHelpClass(s).to_browser()
+
 
 
