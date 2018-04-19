@@ -17,6 +17,10 @@ def jlpickle(file_name):
     return JsonObjectHelpClass('{}').to_pickle_load(file_name)
 
 
+def pickle_list():
+    return JsonObjectHelpClass('{}').pickle_list()
+
+
 def jyaml(dict_json):
     print yaml.safe_dump(dict_json, default_flow_style=False)
 

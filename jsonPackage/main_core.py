@@ -1,3 +1,4 @@
+import os
 import json
 import pickle
 import uuid
@@ -78,6 +79,10 @@ class JsonObjectHelpClass(object):
         return full_name
 
     @staticmethod
+    def pickle_list():
+        return ['/tmp/{}'.format(x) for x in os.listdir("/tmp/") if '.pickle' in x]
+
+    @staticmethod
     def to_pickle_load(file_name):
         with open('/tmp/{}.pickle'.format(file_name), 'wb') as handle:
             return pickle.load(handle)
@@ -92,7 +97,8 @@ if __name__ == '__main__':
     # print JsonObjectHelpClass(s).to_color()
     # JsonObjectHelpClass(s).to_yaml()
     # JsonObjectHelpClass(s).to_pickle_save('testname')
-    print JsonObjectHelpClass(s).to_browser()
+    # print JsonObjectHelpClass(s).to_browser()
+    print JsonObjectHelpClass('{}').pickle_list()
 
 
 
