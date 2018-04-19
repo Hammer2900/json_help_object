@@ -13,6 +13,15 @@ def jspickle(dict_json, file_name):
     JsonObjectHelpClass(dict_json).to_pickle_save(file_name)
 
 
+def jquery(dict_json, query):
+    """
+    Example "name.cool.0.dict"
+    :param dict_json:
+    :param query: list []
+    """
+    return JsonObjectHelpClass(dict_json).parse_query(query)
+
+
 def jlpickle(file_name):
     return JsonObjectHelpClass('{}').to_pickle_load(file_name)
 
