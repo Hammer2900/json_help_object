@@ -26,3 +26,5 @@ jspickle(example_json)
 jlpickle(example_json)
 
 jyaml(example_json)
+
+j2html(example_json)

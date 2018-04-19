@@ -19,3 +19,7 @@ def jlpickle(file_name):
 
 def jyaml(dict_json):
     print yaml.safe_dump(dict_json, default_flow_style=False)
+
+
+def j2html(dict_json):
+    print JsonObjectHelpClass(dict_json).to_browser()
