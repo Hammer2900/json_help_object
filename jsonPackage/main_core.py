@@ -4,6 +4,8 @@ import pickle
 import uuid
 import webbrowser
 import yaml
+
+from jsontraverse.parser import JsonTraverseParser
 from pygments import highlight, lexers, formatters
 from json2html import *
 
@@ -78,6 +80,9 @@ class JsonObjectHelpClass(object):
             pickle.dump(self.json, handle, protocol=pickle.HIGHEST_PROTOCOL)
         return full_name
 
+    def parse_query(self, query):
+        return JsonTraverseParser(unicode(self.raw)).traverse(query)
+
     @staticmethod
     def pickle_list():
         return ['/tmp/{}'.format(x) for x in os.listdir("/tmp/") if '.pickle' in x]
@@ -98,7 +103,8 @@ if __name__ == '__main__':
     # JsonObjectHelpClass(s).to_yaml()
     # JsonObjectHelpClass(s).to_pickle_save('testname')
     # print JsonObjectHelpClass(s).to_browser()
-    print JsonObjectHelpClass('{}').pickle_list()
+    # print JsonObjectHelpClass('{}').pickle_list()
+    print JsonObjectHelpClass(s).parse_query(u'name')
 
 
 
