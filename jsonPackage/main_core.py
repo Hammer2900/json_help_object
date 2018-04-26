@@ -10,6 +10,29 @@ from pygments import highlight, lexers, formatters
 from json2html import *
 
 
+class PickleObjectHelpClass(object):
+    def __init__(self, obj, *args, **kwargs):
+        self.obj = obj
+        self.save_path = '/tmp/obj__{}.pickle'
+
+    def to_obj_save_pickle(self, file_name):
+        full_name = self.save_path.format(file_name)
+        with open(full_name, 'wb') as handle:
+            pickle.dump(self.obj, handle, protocol=pickle.HIGHEST_PROTOCOL)
+        return full_name
+
+    def to_obj_load_pickle(self, file_name):
+        with open(self.save_path.format(file_name), 'rb') as handle:
+            return pickle.load(handle)
+
+    @staticmethod
+    def to_obj_list_pickle(self):
+        return ['/tmp/{}'.format(x) for x in os.listdir("/tmp/") if 'obj__' in x]
+
+    def to_obj_clean_pickle(self):
+        pass
+
+
 class JsonObjectHelpClass(object):
     def __init__(self, data, *args, **kwargs):
         self.raw = data
@@ -95,19 +118,6 @@ class JsonObjectHelpClass(object):
     def to_yaml(self):
         print yaml.safe_dump(self.json, default_flow_style=False)
 
-    def to_obj_save_pickle(self):
-        pass
-
-    def to_obj_load_pickle(self):
-        pass
-
-    def to_obj_list_pickle(self):
-        pass
-
-    def to_obj_clean_pickle(self):
-        pass
-
-
 
 if __name__ == '__main__':
     s = '{"id": 1, "name": "A green door", "price": [{"id": 1, "name": "A green door", "price": 12.50, "tags": ["home", "green"]}, {"id": 1, "name": "A green door", "price": 12.50, "tags": ["home", "green"]}], "tags": {"name": "A green door"}}'
@@ -117,7 +127,9 @@ if __name__ == '__main__':
     # JsonObjectHelpClass(s).to_pickle_save('testname')
     # print JsonObjectHelpClass(s).to_browser()
     # print JsonObjectHelpClass('{}').pickle_list()
-    print JsonObjectHelpClass(s).parse_query(u'name')
+    # print JsonObjectHelpClass(s).parse_query(u'name')
+    # print PickleObjectHelpClass(object).to_obj_save_pickle('dfdfdfdfdf')
+    print PickleObjectHelpClass(object).to_obj_load_pickle('dfdfdfdfdf')
 
 
 

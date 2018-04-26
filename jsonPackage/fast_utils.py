@@ -38,9 +38,24 @@ def j2html(dict_json):
     print JsonObjectHelpClass(dict_json).to_browser()
 
 
-def ospickle():
+def ospickle(file_name, obj):
+    return PickleObjectHelpClass(obj).to_obj_save_pickle(file_name)
+
+
+def olpickle(file_name):
+    return PickleObjectHelpClass(object).to_obj_load_pickle(file_name)
+
+
+def obj_pickle_list():
+    """
+    Show list pickle objects.
+    """
     pass
 
 
-def olpickle():
+def ocpickle():
+    """
+    Clean temp folder.
+    :rtype: object
+    """
     pass
