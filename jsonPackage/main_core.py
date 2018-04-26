@@ -112,7 +112,7 @@ class JsonObjectHelpClass(object):
 
     @staticmethod
     def to_pickle_load(file_name):
-        with open('/tmp/{}.pickle'.format(file_name), 'wb') as handle:
+        with open('/tmp/{}.pickle'.format(file_name), 'rb') as handle:
             return pickle.load(handle)
 
     def to_yaml(self):
