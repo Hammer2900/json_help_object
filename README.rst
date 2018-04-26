@@ -10,7 +10,7 @@ Install
 
 pip install git+https://github.com/Hammer2900/json_help_object --upgrade
 
-Example
+Example json
 -------
 
 from jsonPackage.fast_utils import *
@@ -32,3 +32,12 @@ j2html(example_json)
 pickle_list()
 
 jquery(example_json, 'name')
+
+Example object
+-------
+
+from jsonPackage.fast_utils import ospickle, olpickle
+
+ospickle('team009', object)
+
+obj = olpickle('team009')
