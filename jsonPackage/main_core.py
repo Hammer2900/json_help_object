@@ -95,6 +95,19 @@ class JsonObjectHelpClass(object):
     def to_yaml(self):
         print yaml.safe_dump(self.json, default_flow_style=False)
 
+    def to_obj_save_pickle(self):
+        pass
+
+    def to_obj_load_pickle(self):
+        pass
+
+    def to_obj_list_pickle(self):
+        pass
+
+    def to_obj_clean_pickle(self):
+        pass
+
+
 
 if __name__ == '__main__':
     s = '{"id": 1, "name": "A green door", "price": [{"id": 1, "name": "A green door", "price": 12.50, "tags": ["home", "green"]}, {"id": 1, "name": "A green door", "price": 12.50, "tags": ["home", "green"]}], "tags": {"name": "A green door"}}'
