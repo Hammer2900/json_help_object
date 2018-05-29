@@ -41,3 +41,8 @@ from jsonPackage.fast_utils import ospickle, olpickle
 ospickle('team009', object)
 
 obj = olpickle('team009')
+
+Example list
+-------
+
+list_iter_print(json.loads(example_json))

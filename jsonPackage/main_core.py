@@ -33,6 +33,21 @@ class PickleObjectHelpClass(object):
         pass
 
 
+class IterateObjectClass(object):
+    def print_items_in_iterable_dict(self, iterable_dict):
+        for key, value in iterable_dict.iteritems():
+            if isinstance(value, dict) or isinstance(value, list):
+                print JsonObjectHelpClass(value).to_color()
+            else:
+                print('{} : --> {}'.format(key, value))
+
+    def print_items_in_iterable_list(self, iterable_list):
+        pass
+
+    def pickle_all_items_from_iterable(self):
+        pass
+
+
 class JsonObjectHelpClass(object):
     def __init__(self, data, *args, **kwargs):
         self.raw = data
@@ -42,7 +57,7 @@ class JsonObjectHelpClass(object):
     def _check_data_type(self, data):
         if isinstance(data, str) or isinstance(data, unicode):
             return self._proccess_string(data)
-        elif isinstance(data, dict):
+        elif isinstance(data, dict) or isinstance(data, list):
             return self._proccess_json(data)
         else:
             raise Exception("Unknown data format.")
@@ -129,7 +144,8 @@ if __name__ == '__main__':
     # print JsonObjectHelpClass('{}').pickle_list()
     # print JsonObjectHelpClass(s).parse_query(u'name')
     # print PickleObjectHelpClass(object).to_obj_save_pickle('dfdfdfdfdf')
-    print PickleObjectHelpClass(object).to_obj_load_pickle('dfdfdfdfdf')
+    # print PickleObjectHelpClass(object).to_obj_load_pickle('dfdfdfdfdf')
+    IterateObjectClass().print_items_in_iterable_dict(json.loads(s))
 
 
 

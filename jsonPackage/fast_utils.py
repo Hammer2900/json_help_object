@@ -59,3 +59,7 @@ def ocpickle():
     :rtype: object
     """
     pass
+
+
+def list_iter_print(iterable_dict):
+    IterateObjectClass().print_items_in_iterable_dict(iterable_dict)
