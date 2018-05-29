@@ -41,6 +41,9 @@ class IterateObjectClass(object):
             else:
                 print('{} : --> {}'.format(key, value))
 
+    def print_items_in_iterable_dict_table(self, iterable_dict):
+        pass
+
     def print_items_in_iterable_list(self, iterable_list):
         pass
 
