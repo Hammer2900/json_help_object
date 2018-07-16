@@ -1,5 +1,7 @@
-from main_core import *
-
+try:
+    from main_core import *
+except ImportError:
+    from .main_core import *
 
 def jprint(dict_json, indent=6):
     print(JsonObjectHelpClass(dict_json).to_print(indent))
