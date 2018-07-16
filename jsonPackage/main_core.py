@@ -37,7 +37,7 @@ class IterateObjectClass(object):
     def print_items_in_iterable_dict(self, iterable_dict):
         for key, value in iterable_dict.iteritems():
             if isinstance(value, dict) or isinstance(value, list):
-                print JsonObjectHelpClass(value).to_color()
+                print(JsonObjectHelpClass(value).to_color())
             else:
                 print('{} : --> {}'.format(key, value))
 
@@ -134,7 +134,7 @@ class JsonObjectHelpClass(object):
             return pickle.load(handle)
 
     def to_yaml(self):
-        print yaml.safe_dump(self.json, default_flow_style=False)
+        print(yaml.safe_dump(self.json, default_flow_style=False))
 
 
 if __name__ == '__main__':
