@@ -35,7 +35,7 @@ def jyaml(dict_json):
 
 
 def j2html(dict_json):
-    print JsonObjectHelpClass(dict_json).to_browser()
+    print(JsonObjectHelpClass(dict_json).to_browser())
 
 
 def ospickle(file_name, obj):
