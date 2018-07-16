@@ -1,7 +1,6 @@
 import os
 import json
 import pickle
-import six
 import uuid
 import webbrowser
 import yaml
@@ -59,7 +58,7 @@ class JsonObjectHelpClass(object):
         self._check_bin_attribute()
 
     def _check_data_type(self, data):
-        if isinstance(data, str) or isinstance(data, six.string_types):
+        if isinstance(data, str):
             return self._proccess_string(data)
         elif isinstance(data, dict) or isinstance(data, list):
             return self._proccess_json(data)
