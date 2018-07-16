@@ -1,1 +1,1 @@
-import main_core, fast_utils
+from . import main_core, fast_utils
