@@ -16,6 +16,7 @@ class DirStatusClass(object):
         self.magic = magic
         self.sub = sub
         self.result = {
+            'hint': self.obj.__doc__,
             'magic': [],
             'hidden': [],
             'simple': [],
@@ -23,7 +24,6 @@ class DirStatusClass(object):
             'simple_count': 0,
             'hidden_count': 0,
             'type': str(type(self.obj)),
-            'hint': self.obj.__doc__
             # 'dict': self.obj.__dict__
         }
         self.grab_info()
