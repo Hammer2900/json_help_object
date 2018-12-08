@@ -16,6 +16,7 @@ class DirStatusClass(object):
         self.magic = magic
         self.sub = sub
         self.result = {
+            'name': self.obj.__name__,
             'hint': self.obj.__doc__,
             'magic': [],
             'hidden': [],
