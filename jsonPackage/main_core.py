@@ -10,6 +10,55 @@ from pygments import highlight, lexers, formatters
 from json2html import *
 
 
+class DirStatusClass(object):
+    def __init__(self, obj, magic=None, sub=None):
+        self.obj = obj
+        self.magic = magic
+        self.sub = sub
+        self.result = {'magic': [], 'hidden': [], 'simple': [], 'magic_count': 0, 'simple_count': 0, 'hidden_count': 0,}
+        self.grab_info()
+
+    @staticmethod
+    def _header_print(name, line_count=30, field_char='='):
+        return '{} {} {}'.format(field_char * line_count, name, field_char * line_count)
+
+    def grab_info(self):
+        for lines in dir(self.obj):
+            if lines.startswith('__'):
+                self.result['magic'].append(lines)
+            elif lines.startswith('_'):
+                self.result['hidden'].append(lines)
+            else:
+                self.result['simple'].append(lines)
+        self.result['magic_count'] = len(self.result['magic'])
+        self.result['simple_count'] = len(self.result['simple'])
+        self.result['hidden_count'] = len(self.result['hidden'])
+
+    def _print_sub_or(self, key, lines):
+        if not self.sub:
+            print(f'{key}. {lines}')
+        else:
+            print(f'{key}. {lines}')
+            for sub in dir(getattr(self.obj, lines)):
+                print('{}# {}'.format(' ' * 10, sub))
+
+    def print_methods(self):
+        if self.magic:
+            print(self._header_print('MAGIC METHODS'))
+            for key, lines in enumerate(self.result['magic'], start=1):
+                self._print_sub_or(key, lines)
+            print(self._header_print('HIDDEN METHODS'))
+            for key, lines in enumerate(self.result['hidden'], start=1):
+                self._print_sub_or(key, lines)
+        print(self._header_print('METHODS'))
+        for key, lines in enumerate(self.result['simple'], start=1):
+            self._print_sub_or(key, lines)
+        print(self._header_print('END'))
+
+    def dict_with_methods(self):
+        return self.result
+
+
 class PickleObjectHelpClass(object):
     def __init__(self, obj, *args, **kwargs):
         self.obj = obj

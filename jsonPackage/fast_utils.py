@@ -64,3 +64,11 @@ def ocpickle():
 
 def list_iter_print(iterable_dict):
     IterateObjectClass().print_items_in_iterable_dict(iterable_dict)
+
+
+def dir_print(obj, magic=False, sub=False):
+    DirStatusClass(obj, magic, sub).print_methods()
+
+
+def dir_html(obj):
+    print(JsonObjectHelpClass(DirStatusClass(obj).dict_with_methods()).to_browser())

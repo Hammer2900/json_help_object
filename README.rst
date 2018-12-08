@@ -46,3 +46,10 @@ Example list
 -------
 
 list_iter_print(json.loads(example_json))
+
+
+Example dir
+-------
+
+dir_print(os)
+dir_html(os)
