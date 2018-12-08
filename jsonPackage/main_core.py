@@ -33,13 +33,18 @@ class DirStatusClass(object):
     def _header_print(name, line_count=30, field_char='='):
         return '{} {} {}'.format(field_char * line_count, name, field_char * line_count)
 
-    def _default_types(self, types):
-        self.result['magic'] = types
-        self.result['hidden'] = types
-        self.result['simple'] = types
+    def _default_types_list(self):
+        self.result['magic'] = []
+        self.result['hidden'] = []
+        self.result['simple'] = []
+
+    def _default_types_dict(self):
+        self.result['magic'] = {}
+        self.result['hidden'] = {}
+        self.result['simple'] = {}
 
     def grab_info(self):
-        self._default_types([])
+        self._default_types_list()
         for lines in dir(self.obj):
             if lines.startswith('__'):
                 self.result['magic'].append(lines)
@@ -52,7 +57,7 @@ class DirStatusClass(object):
         self.result['hidden_count'] = len(self.result['hidden'])
 
     def grab_sub_info(self):
-        self._default_types({})
+        self._default_types_dict()
         for lines in dir(self.obj):
             if lines.startswith('__'):
                 self.result['magic'][str(lines)] = self._sub_get(lines)
@@ -236,6 +241,6 @@ if __name__ == '__main__':
     # IterateObjectClass().print_items_in_iterable_dict(json.loads(s))
     # JsonObjectHelpClass([1,2]).to_print()
     # JsonObjectHelpClass(['qwerqwe', 'qweqwe']).to_print()
-    a = DirStatusClass(os, True, True)
+    a = DirStatusClass(os, False, False)
     print(a.dict_with_methods())
     JsonObjectHelpClass(a.dict_with_methods()).to_browser()
