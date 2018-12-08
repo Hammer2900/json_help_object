@@ -25,7 +25,7 @@ class DirStatusClass(object):
             'simple_count': 0,
             'hidden_count': 0,
             'type': str(type(self.obj)),
-            # 'dict': self.obj.__dict__
+            'dict': getattr(self.obj, '__dict__', None)
         }
         self.grab_info()
 
