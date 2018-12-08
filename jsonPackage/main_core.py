@@ -15,7 +15,15 @@ class DirStatusClass(object):
         self.obj = obj
         self.magic = magic
         self.sub = sub
-        self.result = {'magic': [], 'hidden': [], 'simple': [], 'magic_count': 0, 'simple_count': 0, 'hidden_count': 0,}
+        self.result = {
+            'magic': [],
+            'hidden': [],
+            'simple': [],
+            'magic_count': 0,
+            'simple_count': 0,
+            'hidden_count': 0,
+            'type': str(type(self.obj))
+        }
         self.grab_info()
 
     @staticmethod
