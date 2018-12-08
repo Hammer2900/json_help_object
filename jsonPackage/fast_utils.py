@@ -70,5 +70,5 @@ def dir_print(obj, magic=False, sub=False):
     DirStatusClass(obj, magic, sub).print_methods()
 
 
-def dir_html(obj):
-    print(JsonObjectHelpClass(DirStatusClass(obj).dict_with_methods()).to_browser())
+def dir_html(obj, magic=False, sub=False):
+    print(JsonObjectHelpClass(DirStatusClass(obj, magic, sub).dict_with_methods()).to_browser())
