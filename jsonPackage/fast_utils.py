@@ -1,6 +1,7 @@
 from __future__ import absolute_import
 from .main_core import *
 
+
 def jprint(dict_json, indent=6):
     print(JsonObjectHelpClass(dict_json).to_print(indent))
 

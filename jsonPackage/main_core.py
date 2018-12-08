@@ -35,9 +35,9 @@ class PickleObjectHelpClass(object):
 
 class IterateObjectClass(object):
     def print_items_in_iterable_dict(self, iterable_dict):
-        for key, value in iterable_dict.iteritems():
+        for key, value in iterable_dict.items():
             if isinstance(value, dict) or isinstance(value, list):
-                print(JsonObjectHelpClass(value).to_color())
+                print(JsonObjectHelpClass(value).to_print())
             else:
                 print('{} : --> {}'.format(key, value))
 
@@ -63,12 +63,12 @@ class JsonObjectHelpClass(object):
         elif isinstance(data, dict) or isinstance(data, list):
             return self._proccess_json(data)
         else:
-            raise Exception("Unknown data format.")
+            return data
 
     def _check_bin_attribute(self):
         if isinstance(self.json, list):
             self.list_obj = [JsonObjectHelpClass(x) for x in self.json]
-        else:
+        elif isinstance(self.json, dict):
             for key, value in self.json.items():
                 if isinstance(value, dict):
                     setattr(self, key, JsonObjectHelpClass(value))
@@ -92,11 +92,14 @@ class JsonObjectHelpClass(object):
         return data
 
     def _proccess_string(self, data):
-        return json.loads(data)
+        try:
+            return json.loads(data)
+        except:
+            return data
 
     def to_color(self, indent=3):
         return highlight(
-            unicode(json.dumps(self.json, indent=indent), 'UTF-8'),
+            json.dumps(self.json, indent=indent), 'UTF-8',
             lexers.JsonLexer(),
             formatters.TerminalFormatter()
         )
@@ -122,7 +125,7 @@ class JsonObjectHelpClass(object):
         return full_name
 
     def parse_query(self, query):
-        return JsonTraverseParser(unicode(self.raw)).traverse(query)
+        return JsonTraverseParser(self.raw).traverse(query)
 
     @staticmethod
     def pickle_list():
@@ -148,7 +151,6 @@ if __name__ == '__main__':
     # print JsonObjectHelpClass(s).parse_query(u'name')
     # print PickleObjectHelpClass(object).to_obj_save_pickle('dfdfdfdfdf')
     # print PickleObjectHelpClass(object).to_obj_load_pickle('dfdfdfdfdf')
-    IterateObjectClass().print_items_in_iterable_dict(json.loads(s))
-
-
-
+    # IterateObjectClass().print_items_in_iterable_dict(json.loads(s))
+    # JsonObjectHelpClass([1,2]).to_print()
+    JsonObjectHelpClass(['qwerqwe', 'qweqwe']).to_print()
