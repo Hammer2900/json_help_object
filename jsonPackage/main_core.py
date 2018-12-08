@@ -23,6 +23,7 @@ class DirStatusClass(object):
             'simple_count': 0,
             'hidden_count': 0,
             'type': str(type(self.obj)),
+            'hint': self.obj.__doc__
             # 'dict': self.obj.__dict__
         }
         self.grab_info()
