@@ -26,7 +26,7 @@ class PickleObjectHelpClass(object):
             return pickle.load(handle)
 
     @staticmethod
-    def to_obj_list_pickle(self):
+    def to_obj_list_pickle():
         return ['/tmp/{}'.format(x) for x in os.listdir("/tmp/") if 'obj__' in x]
 
     def to_obj_clean_pickle(self):
@@ -154,3 +154,4 @@ if __name__ == '__main__':
     # IterateObjectClass().print_items_in_iterable_dict(json.loads(s))
     # JsonObjectHelpClass([1,2]).to_print()
     JsonObjectHelpClass(['qwerqwe', 'qweqwe']).to_print()
+

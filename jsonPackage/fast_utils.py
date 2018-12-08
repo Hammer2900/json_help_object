@@ -51,7 +51,7 @@ def obj_pickle_list():
     """
     Show list pickle objects.
     """
-    pass
+    return PickleObjectHelpClass(object).to_obj_list_pickle()
 
 
 def ocpickle():
