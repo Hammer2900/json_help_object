@@ -18,22 +18,28 @@ class DirStatusClass(object):
         self.result = {
             'name': getattr(self.obj, '__name__', None),
             'hint': self.obj.__doc__,
-            'magic': [],
-            'hidden': [],
-            'simple': [],
+            'magic': None,
+            'hidden': None,
+            'simple': None,
             'magic_count': 0,
             'simple_count': 0,
             'hidden_count': 0,
             'type': str(type(self.obj)),
-            'dict': getattr(self.obj, '__dict__', None)
+            # 'dict': getattr(self.obj, '__dict__', None)
         }
-        self.grab_info()
+        self.grab_info() if not self.sub else self.grab_sub_info()
 
     @staticmethod
     def _header_print(name, line_count=30, field_char='='):
         return '{} {} {}'.format(field_char * line_count, name, field_char * line_count)
 
+    def _default_types(self, types):
+        self.result['magic'] = types
+        self.result['hidden'] = types
+        self.result['simple'] = types
+
     def grab_info(self):
+        self._default_types([])
         for lines in dir(self.obj):
             if lines.startswith('__'):
                 self.result['magic'].append(lines)
@@ -41,6 +47,22 @@ class DirStatusClass(object):
                 self.result['hidden'].append(lines)
             else:
                 self.result['simple'].append(lines)
+        self.result['magic_count'] = len(self.result['magic'])
+        self.result['simple_count'] = len(self.result['simple'])
+        self.result['hidden_count'] = len(self.result['hidden'])
+
+    def grab_sub_info(self):
+        self._default_types({})
+        for lines in dir(self.obj):
+            if lines.startswith('__'):
+                for sub in dir(getattr(self.obj, lines)):
+                    self.result['magic'][lines] = sub
+            elif lines.startswith('_'):
+                for sub in dir(getattr(self.obj, lines)):
+                    self.result['hidden'][lines] = sub
+            else:
+                for sub in dir(getattr(self.obj, lines)):
+                    self.result['simple'][lines] = sub
         self.result['magic_count'] = len(self.result['magic'])
         self.result['simple_count'] = len(self.result['simple'])
         self.result['hidden_count'] = len(self.result['hidden'])
@@ -213,5 +235,6 @@ if __name__ == '__main__':
     # print PickleObjectHelpClass(object).to_obj_load_pickle('dfdfdfdfdf')
     # IterateObjectClass().print_items_in_iterable_dict(json.loads(s))
     # JsonObjectHelpClass([1,2]).to_print()
-    JsonObjectHelpClass(['qwerqwe', 'qweqwe']).to_print()
+    # JsonObjectHelpClass(['qwerqwe', 'qweqwe']).to_print()
+    DirStatusClass(os, True, False).print_methods()
 
