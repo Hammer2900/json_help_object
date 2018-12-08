@@ -55,11 +55,11 @@ class DirStatusClass(object):
         self._default_types({})
         for lines in dir(self.obj):
             if lines.startswith('__'):
-                self.result['magic'][lines] = [x for x in dir(getattr(self.obj, lines))]
+                self.result['magic'][lines] = self._sub_get(lines)
             elif lines.startswith('_'):
-                self.result['hidden'][lines] = [x for x in dir(getattr(self.obj, lines))]
+                self.result['hidden'][lines] = self._sub_get(lines)
             else:
-                self.result['simple'][lines] = [x for x in dir(getattr(self.obj, lines))]
+                self.result['simple'][lines] = self._sub_get(lines)
         self.result['magic_count'] = len(self.result['magic'])
         self.result['simple_count'] = len(self.result['simple'])
         self.result['hidden_count'] = len(self.result['hidden'])
@@ -71,6 +71,9 @@ class DirStatusClass(object):
             print(f'{key}. {lines}')
             for sub in dir(getattr(self.obj, lines)):
                 print('{}# {}'.format(' ' * 10, sub))
+
+    def _sub_get(self, lines):
+        return [str(x) for x in dir(getattr(self.obj, lines))]
 
     def print_methods(self):
         if self.magic:
@@ -235,3 +238,4 @@ if __name__ == '__main__':
     # JsonObjectHelpClass(['qwerqwe', 'qweqwe']).to_print()
     a = DirStatusClass(os, True, True)
     print(a.dict_with_methods())
+    JsonObjectHelpClass(a.dict_with_methods()).to_browser()
