@@ -55,11 +55,11 @@ class DirStatusClass(object):
         self._default_types({})
         for lines in dir(self.obj):
             if lines.startswith('__'):
-                self.result['magic'][lines] = self._sub_get(lines)
+                self.result['magic'][str(lines)] = self._sub_get(lines)
             elif lines.startswith('_'):
-                self.result['hidden'][lines] = self._sub_get(lines)
+                self.result['hidden'][str(lines)] = self._sub_get(lines)
             else:
-                self.result['simple'][lines] = self._sub_get(lines)
+                self.result['simple'][str(lines)] = self._sub_get(lines)
         self.result['magic_count'] = len(self.result['magic'])
         self.result['simple_count'] = len(self.result['simple'])
         self.result['hidden_count'] = len(self.result['hidden'])
