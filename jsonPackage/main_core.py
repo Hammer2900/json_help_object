@@ -55,14 +55,11 @@ class DirStatusClass(object):
         self._default_types({})
         for lines in dir(self.obj):
             if lines.startswith('__'):
-                for sub in dir(getattr(self.obj, lines)):
-                    self.result['magic'][lines] = sub
+                self.result['magic'][lines] = [x for x in dir(getattr(self.obj, lines))]
             elif lines.startswith('_'):
-                for sub in dir(getattr(self.obj, lines)):
-                    self.result['hidden'][lines] = sub
+                self.result['hidden'][lines] = [x for x in dir(getattr(self.obj, lines))]
             else:
-                for sub in dir(getattr(self.obj, lines)):
-                    self.result['simple'][lines] = sub
+                self.result['simple'][lines] = [x for x in dir(getattr(self.obj, lines))]
         self.result['magic_count'] = len(self.result['magic'])
         self.result['simple_count'] = len(self.result['simple'])
         self.result['hidden_count'] = len(self.result['hidden'])
@@ -236,5 +233,5 @@ if __name__ == '__main__':
     # IterateObjectClass().print_items_in_iterable_dict(json.loads(s))
     # JsonObjectHelpClass([1,2]).to_print()
     # JsonObjectHelpClass(['qwerqwe', 'qweqwe']).to_print()
-    DirStatusClass(os, True, False).print_methods()
-
+    a = DirStatusClass(os, True, True)
+    print(a.dict_with_methods())
