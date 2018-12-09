@@ -1,13 +1,31 @@
-import os
 import json
+import os
 import pickle
+import time
 import uuid
 import webbrowser
-import yaml
 
+import yaml
+from json2html import *
 from jsontraverse.parser import JsonTraverseParser
 from pygments import highlight, lexers, formatters
-from json2html import *
+
+
+def timeit(method):
+    """
+    Calculate function time, decorator.
+    :param method:
+    :return:
+    """
+    def timed(*args, **kw):
+        ts = time.time()
+        result = method(*args, **kw)
+        te = time.time()
+
+        print('%r (%r, %r) %2.2f sec' % (method.__name__, args, kw, te - ts))
+        return result
+
+    return timed
 
 
 class DirStatusClass(object):
