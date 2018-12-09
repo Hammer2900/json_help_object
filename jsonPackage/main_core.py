@@ -4,11 +4,25 @@ import pickle
 import time
 import uuid
 import webbrowser
+from multiprocessing.dummy import Pool as ThreadPool
 
 import yaml
 from json2html import *
 from jsontraverse.parser import JsonTraverseParser
 from pygments import highlight, lexers, formatters
+
+
+def parallel_calculation(calculate_function, data_list, threads_count=25):
+    """
+    Parallel task calculation.
+    :param calculate_function:
+    :param data_list:
+    :param threads_count:
+    """
+    pool = ThreadPool(threads_count)
+    pool.map(calculate_function, data_list)
+    pool.close()
+    pool.join()
 
 
 def timeit(method):

@@ -58,6 +58,9 @@ dir_html(os)
 Example help time function
 -------
 
+@log
 @timeit
 def new_replica_call():
     pass
+
+parallel_calculation(some_function, data_list, 25)

@@ -75,4 +75,5 @@ def dir_html(obj, magic=False, sub=False):
     print(JsonObjectHelpClass(DirStatusClass(obj, magic, sub).dict_with_methods()).to_browser())
 
 
-log = log_exceptions
+log = log_exceptions  # decorator
+pc = parallel_calculation  # function
