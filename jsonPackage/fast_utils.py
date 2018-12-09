@@ -1,5 +1,6 @@
 from __future__ import absolute_import
 from .main_core import *
+from .log_function import *
 
 
 def jprint(dict_json, indent=6):
@@ -72,3 +73,6 @@ def dir_print(obj, magic=False, sub=False):
 
 def dir_html(obj, magic=False, sub=False):
     print(JsonObjectHelpClass(DirStatusClass(obj, magic, sub).dict_with_methods()).to_browser())
+
+
+log = log_exceptions
