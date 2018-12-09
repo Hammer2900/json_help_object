@@ -53,3 +53,11 @@ Example dir
 
 dir_print(os)
 dir_html(os)
+
+
+Example help time function
+-------
+
+@timeit
+def new_replica_call():
+    pass
