@@ -64,3 +64,5 @@ def new_replica_call():
     pass
 
 parallel_calculation(some_function, data_list, 25)
+
+obj_size(object)

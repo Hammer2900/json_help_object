@@ -1,4 +1,5 @@
 import json
+import math
 import os
 import pickle
 import time
@@ -10,6 +11,22 @@ import yaml
 from json2html import *
 from jsontraverse.parser import JsonTraverseParser
 from pygments import highlight, lexers, formatters
+from pympler import asizeof
+
+
+class PythonProfile(object):
+
+    def convert_size(self, size_bytes):
+        if size_bytes == 0:
+            return "0B"
+        size_name = ("B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB")
+        i = int(math.floor(math.log(size_bytes, 1024)))
+        p = math.pow(1024, i)
+        s = round(size_bytes / p, 2)
+        return "%s %s" % (s, size_name[i])
+
+    def calculate_obj_size(self, obj):
+        print(self.convert_size(asizeof.asizeof(obj)))
 
 
 def parallel_calculation(calculate_function, data_list, threads_count=25):
