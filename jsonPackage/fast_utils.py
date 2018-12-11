@@ -75,8 +75,8 @@ def dir_html(obj, magic=False, sub=False):
     print(JsonObjectHelpClass(DirStatusClass(obj, magic, sub).dict_with_methods()).to_browser())
 
 
-def obj_size(obj):
-    PythonProfile().calculate_obj_size(obj)
+def obj_size(obj, info=False):
+    PythonProfile().calculate_obj_size(obj, info)
 
 
 log = log_exceptions  # decorator

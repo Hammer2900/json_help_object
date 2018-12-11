@@ -25,8 +25,10 @@ class PythonProfile(object):
         s = round(size_bytes / p, 2)
         return "%s %s" % (s, size_name[i])
 
-    def calculate_obj_size(self, obj):
+    def calculate_obj_size(self, obj, info=False):
         print(self.convert_size(asizeof.asizeof(obj)))
+        if info:
+            print(asizeof.asized(obj, detail=1).format())
 
 
 def parallel_calculation(calculate_function, data_list, threads_count=25):
