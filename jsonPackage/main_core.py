@@ -69,6 +69,7 @@ class TimerContextManager(object):
     def __exit__(self, *args):
         self.end = time.time()
         self.interval = self.end - self.start
+        print('%2.2f sec' % self.interval)
 
 
 class DirStatusClass(object):
