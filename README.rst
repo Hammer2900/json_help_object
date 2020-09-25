@@ -58,11 +58,15 @@ dir_html(os)
 Example help time function
 -------
 
+```
 @log
 @timeit
 def new_replica_call():
     pass
+```
 
 parallel_calculation(some_function, data_list, 25)
 
 obj_size(object)
+
+[![HitCount](http://hits.dwyl.com/Hammer2900/https://githubcom/Hammer2900/json_help_object.svg)](http://hits.dwyl.com/Hammer2900/https://githubcom/Hammer2900/json_help_object)
