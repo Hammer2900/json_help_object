@@ -15,15 +15,14 @@ from pympler import asizeof
 
 
 class PythonProfile(object):
-
     def convert_size(self, size_bytes):
         if size_bytes == 0:
-            return "0B"
-        size_name = ("B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB")
+            return '0B'
+        size_name = ('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB')
         i = int(math.floor(math.log(size_bytes, 1024)))
         p = math.pow(1024, i)
         s = round(size_bytes / p, 2)
-        return "%s %s" % (s, size_name[i])
+        return '%s %s' % (s, size_name[i])
 
     def calculate_obj_size(self, obj, info=False):
         print(self.convert_size(asizeof.asizeof(obj)))
@@ -50,6 +49,7 @@ def timeit(method):
     :param method:
     :return:
     """
+
     def timed(*args, **kw):
         ts = time.time()
         result = method(*args, **kw)
@@ -176,7 +176,7 @@ class PickleObjectHelpClass(object):
 
     @staticmethod
     def to_obj_list_pickle():
-        return ['/tmp/{}'.format(x) for x in os.listdir("/tmp/") if 'obj__' in x]
+        return ['/tmp/{}'.format(x) for x in os.listdir('/tmp/') if 'obj__' in x]
 
     def to_obj_clean_pickle(self):
         pass
@@ -248,13 +248,11 @@ class JsonObjectHelpClass(object):
 
     def to_color(self, indent=3):
         return highlight(
-            json.dumps(self.json, indent=indent), 'UTF-8',
-            lexers.JsonLexer(),
-            formatters.TerminalFormatter()
+            json.dumps(self.json, indent=indent), 'UTF-8', lexers.JsonLexer(), formatters.TerminalFormatter()
         )
 
     def to_print(self, indent=3):
-        print(json.dumps(self.json, indent=indent))
+        return json.dumps(self.json, indent=indent)
 
     def to_browser(self):
         full_name = '/tmp/to_browser_{}.html'.format(uuid.uuid4())
@@ -278,7 +276,7 @@ class JsonObjectHelpClass(object):
 
     @staticmethod
     def pickle_list():
-        return ['/tmp/{}'.format(x) for x in os.listdir("/tmp/") if '.pickle' in x]
+        return ['/tmp/{}'.format(x) for x in os.listdir('/tmp/') if '.pickle' in x]
 
     @staticmethod
     def to_pickle_load(file_name):
@@ -286,7 +284,7 @@ class JsonObjectHelpClass(object):
             return pickle.load(handle)
 
     def to_yaml(self):
-        print(yaml.safe_dump(self.json, default_flow_style=False))
+        return yaml.safe_dump(self.json, default_flow_style=False)
 
 
 if __name__ == '__main__':

@@ -95,7 +95,9 @@ def log_exceptions(log_path='exceptions.log', frame_template=LOG_FRAME_TPL, valu
                             continue
 
                         # log the frame information
-                        log_file.write(frame_template % (frame_info[1], frame_info[2], frame_info[3], frame_info[4][0].lstrip()))
+                        log_file.write(
+                            frame_template % (frame_info[1], frame_info[2], frame_info[3], frame_info[4][0].lstrip())
+                        )
 
                         # log every local variable of the frame
                         for k, v in f_locals.items():

@@ -1,20 +1,14 @@
 [[source]]
-
 url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
-
 [dev-packages]
 
-
-
 [packages]
-
 pygments = "*"
 pyyaml = "*"
-
+pytest = "*"
 
 [requires]
-
-python_version = "2.7"
+python_version = "3.13"

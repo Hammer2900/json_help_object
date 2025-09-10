@@ -7,6 +7,7 @@ Beware this is slow realization for personal use.
 Install
 -------
 ```
+pip install -e .
 pip install git+https://github.com/Hammer2900/json_help_object --upgrade
 ```
 Example json
